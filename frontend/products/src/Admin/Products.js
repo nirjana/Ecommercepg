@@ -29,9 +29,13 @@ const Products = () => {
         .then(res => res.json())
         .then(data => {
           console.log("ddd",data)
-          setProducts(data.data)})
-          notify.success("deleted")
-      })
+          if(!data.details)
+          {setProducts(data.data)
+          notify.success("deleted")}
+          else{
+            notify.error(data.details)
+          }
+      })})
       .catch((error) => {
         notify.error(error)
         console.error('Error:', error);

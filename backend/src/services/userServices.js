@@ -66,7 +66,16 @@ export async function getUserDetails(id) {
   
 
 export async function updateUserById(id,data) {
-    const returnedData = await new User().updateById(id,data);
+  const oldData = await new User().findByParams({id:id});
+
+  const updatedData = {
+    name:data.name || oldData.name,
+    email:data.email || oldData.email,
+    username:data.username || oldData.username,
+    password:data.password || oldData.password,
+}
+console.log("updateduser srvice",updatedData)
+    const returnedData = await new User().updateById(id,updatedData);
 
     return {
         data: returnedData,

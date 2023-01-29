@@ -29,10 +29,14 @@ const Users = () => {
         fetch(`${process.env.REACT_APP_API_URL}/users`)
         .then(res => res.json())
         .then(data => {
-          console.log("ddd",data.data)
-          setUsers(data.data)})
-          notify.success("deleted")
-      })
+          if(!data.details)
+          {console.log("ddd",data.data)
+          setUsers(data.data)
+          notify.success("deleted")}
+          else{
+            notify.error(data.details)
+          }
+      })})
       .catch((error) => {
         notify.error(error)
         console.error('Error:', error);

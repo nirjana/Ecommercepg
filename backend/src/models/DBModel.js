@@ -4,7 +4,7 @@ import snakeize from 'snakeize';
 
 import connection from '../knexfile.js';
 
-console.log("knex connection",Knex(connection))
+// console.log("knex connection",Knex(connection))
 
 /**
  * Base model for that can be used for all tables.
@@ -36,7 +36,6 @@ class DBModel {
   }
 
   async save(data) {
-    console.log("save",data,this.connection(this.table).insert(snakeize(data)))
     const result = await this.connection(this.table).insert(snakeize(data)).returning('*');
 
     return camelize(result);

@@ -22,11 +22,15 @@ export default function EditProduct() {
       },
       body: JSON.stringify({name:title,description:description,price:price,stock:stock,category:category,images:image}),
     })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-        notify.success("edited")
-      })
+    .then((response) => response.json())
+    .then((data) => {console.log(data.details)
+      if(!data.details)
+     { console.log('Success:', data);
+      notify.success("Edited")}
+      else{
+        notify.error(data.details)
+      }
+    })
       .catch((error) => {
         notify.error(error)
         console.error('Error:', error);

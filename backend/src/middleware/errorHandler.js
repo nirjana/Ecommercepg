@@ -27,6 +27,7 @@ export default function (err, req, res, next) {
   }
 
     if (err.isBoom) {
+      console.log("boom")
         return {
           code: err.output.statusCode,
           message:err.output.payload.error,
@@ -46,6 +47,6 @@ export default function (err, req, res, next) {
       return {
         code: HttpStatusCodes.INTERNAL_SERVER_ERROR,
         message: HttpStatusCodes.getStatusText(HttpStatusCodes.INTERNAL_SERVER_ERROR),
-        details: err.message || '',
+        details: err.message + "norm" || '',
       };
   }
