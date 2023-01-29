@@ -57,8 +57,8 @@ const Products = () => {
                 <td>{item.description}</td>
                 <td>{item.price}</td>
                 <td>{item.stock}</td>
-                <td> <Link to={`../products/edit/${item._id}`}>Edit</Link></td>
-                <td> <button  onClick={()=>{Delete(item._id)}}> Delete </button></td>
+                <td> <Link to={`../products/edit/${item.id}`}>Edit</Link></td>
+                <td> <button  onClick={()=>{Delete(item.id)}}> Delete </button></td>
                 </tr>
                 </>
               })}
