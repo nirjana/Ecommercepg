@@ -29,9 +29,13 @@ const Products = () => {
         .then(res => res.json())
         .then(data => {
           console.log("ddd",data)
-          setProducts(data.data)})
-          notify.success("deleted")
-      })
+          if(!data.details)
+          {setProducts(data.data)
+          notify.success("deleted")}
+          else{
+            notify.error(data.details)
+          }
+      })})
       .catch((error) => {
         notify.error(error)
         console.error('Error:', error);
@@ -57,8 +61,8 @@ const Products = () => {
                 <td>{item.description}</td>
                 <td>{item.price}</td>
                 <td>{item.stock}</td>
-                <td> <Link to={`../products/edit/${item._id}`}>Edit</Link></td>
-                <td> <button  onClick={()=>{Delete(item._id)}}> Delete </button></td>
+                <td> <Link to={`../products/edit/${item.id}`}>Edit</Link></td>
+                <td> <button  onClick={()=>{Delete(item.id)}}> Delete </button></td>
                 </tr>
                 </>
               })}

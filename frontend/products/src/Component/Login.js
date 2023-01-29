@@ -15,9 +15,6 @@ const Login = () => {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       },
       body: JSON.stringify({username:username,password:password}),
     })
@@ -31,6 +28,10 @@ const Login = () => {
           notify.success("Login")
           navigate("/")
           window.location.reload();
+        }
+        else{
+          console.log("login admin",data)
+          notify.error(data.details)
         }
       })
       .catch((error) => {

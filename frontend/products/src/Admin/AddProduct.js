@@ -25,9 +25,13 @@ export default function AddProduct() {
       body: JSON.stringify({name:title,description:description,price:price,stock:stock,category:category,images:image}),
     })
       .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
-        notify.success("Added")
+      .then((data) => {console.log(data.details)
+        if(!data.details)
+       { console.log('Success:', data);
+        notify.success("Added")}
+        else{
+          notify.error(data.details)
+        }
       })
       .catch((error) => {
         notify.error(error)

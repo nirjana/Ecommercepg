@@ -26,8 +26,12 @@ const Register = () => {
       })
         .then((response) => response.json())
         .then((data) => {
+          if(data.details){
           console.log('Success:', data);
-          notify.success("registered")
+          notify.success("registered")}
+          else{
+            notify.error(data.details)
+          }
         })
         .catch((error) => {
           notify.error(error)
