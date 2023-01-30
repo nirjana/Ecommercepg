@@ -59,8 +59,8 @@ export const Navbar = () => {
                                        <div className="dropdown"><li class="last small-content dropbtn">
                                                Login <i className="fa fa-user-plus"></i>
                                               <div class="dropdown-content">
-                                                  <a href="/login">Admin </a>
-                                                   <a href="/userLogin">Customer </a>
+                                                  <Link to="/login">Admin </Link>
+                                                   <Link to="/userLogin">Customer </Link>
                                                    </div>
                
                                                </li>
