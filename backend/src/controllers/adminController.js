@@ -1,5 +1,6 @@
 import * as adminService from "../services/adminServices.js"
 
+console.log("processenv",process.env.PORT)
 export function addAdmin(req, res, next) {
     console.log("yei ho",req.body)
     adminService.saveAdmin(req.body)

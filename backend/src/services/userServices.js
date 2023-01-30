@@ -51,7 +51,7 @@ export async function getAllUsers() {
 }
 
 export async function getUserDetails(id) {
-    const insertedData = await new User().findById(id);
+    const insertedData = await new User().getById(id);
     console.log("enset", insertedData);
     console.log(insertedData);
     if (!insertedData) {
