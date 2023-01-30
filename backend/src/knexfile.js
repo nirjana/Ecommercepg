@@ -21,7 +21,7 @@
 const configuration = {
   client: 'pg',
   connection: {
-    host: 'dpg-cfbl73pgp3jsh6b4rrvg-a',
+    host: 'dpg-cfbl73pgp3jsh6b4rrvg-a.oregon-postgres.render.com',
     port: 5432,
     user: 'postgres_40kd_user',
     password: 'qFLxDKieomoww8ta8fjnbhvjwwJaxFCI',
