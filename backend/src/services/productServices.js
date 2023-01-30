@@ -32,7 +32,7 @@ export async function getAllProducts() {
 
 //get product details
 export async function getProductDetails(id) {
-  const insertedData = await new Product().findById(id);
+  const insertedData = await new Product().getById(id);
   console.log("enset", insertedData);
   console.log(insertedData);
   if (!insertedData) {

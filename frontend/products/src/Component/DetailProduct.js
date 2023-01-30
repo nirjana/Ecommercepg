@@ -9,7 +9,7 @@ import * as productServices from "../services/index.js"
 
 const DetailProduct = () => {
     const {id} = useParams();
-    console.log(id)
+    console.log("this is iddetail product",id)
     const [product,setProduct] =useState("");
     const dispatch = useDispatch();
 
