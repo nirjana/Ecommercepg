@@ -1,6 +1,7 @@
 import Boom from "@hapi/boom";
 
 import User from "../models/user.js"
+import Checkout from "../models/checkout.js";
 import { hash, compare, createToken } from '../utils/crypt.js';
 
 export async function registerUser(data) {
@@ -132,5 +133,16 @@ export async function login(params) {
 
 
 
+  export async function saveCheckout(data) {
+    const { id, name, address, phone, email } = data;
+    console.log("eta data", { name: name });
 
+    const insertedData = await new Checkout().save(data);
+    console.log("enset", insertedData);
+
+    return {
+      data: insertedData,
+      message: "Added Checkout sucessfully",
+    };
+  }
  

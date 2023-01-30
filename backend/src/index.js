@@ -8,8 +8,8 @@ import errorHandler from './middleware/errorHandler.js';
 
 const app = express()
 
-dotenv.config();
-// dotenv.config({path : 'Library/Library_management_System/backend/.env'});
+
+dotenv.config({path : '.env'});
 console.log(process.env.PORT)
 app.use(cors());
 app.use(bodyParser.json());
