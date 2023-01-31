@@ -37,7 +37,7 @@ function App() {
         <Route exact path="/products/edit/:id" element={<EditProduct />} />
         <Route exact path="/users/edit/:id" element={<EditUser />} />
         <Route exact path="/cart" element={<Cart />} />
-        <Route exact path="/userRegister/checkout" element={<CheckoutForm />} />
+        <Route exact path="/checkout" element={<CheckoutForm />} />
       </Routes>
       <Footer />
     </div>

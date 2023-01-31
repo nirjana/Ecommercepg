@@ -15,6 +15,7 @@ const configuration = {
     stub: './stub/seed.stub'
   }
 };
+export default configuration;
 
 // // const configuration = {
 // //   client: 'pg',

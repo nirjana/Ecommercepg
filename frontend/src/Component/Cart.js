@@ -36,18 +36,22 @@
 // export default Cart
 
 import React from "react";
-// import { Navbar } from './Navbar'
-// import { Footer } from './Footer'
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { useState, useEffect } from "react";
 import { authService } from "../authentication/authentication";
 
+let cartTotal = 0;
+let shippingTotal = 0;
+let total = 0;
+
 const Cart = () => {
   const products = useSelector((state) => {
     return state.cart.products;
   });
+
+  console.log("cart items,",products)
 
   const cartCount = useSelector((state) => {
     console.log("this is nav state", state.cart.count);
@@ -95,7 +99,9 @@ const Cart = () => {
                       Sub Total:
                     </td>
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                      $36.00
+                      {cartTotal= products.reduce((total,item) => {
+                        return total + (item.cartQuantity * item.price)
+                      },0)}
                     </td>
                   </tr>
                   <tr class="bg-white border-b">
@@ -103,16 +109,16 @@ const Cart = () => {
                       Shipping 10%:
                     </td>
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                      $3.60
+                      {shippingTotal = 0.1 *cartTotal}
                     </td>
                   </tr>
                   <tr class="bg-white border-b">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      Total:
+                      Total: 
                     </td>
 
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                      $39.60
+                    {total= cartTotal +shippingTotal}
                     </td>
                   </tr>
                 </tbody>
@@ -120,9 +126,14 @@ const Cart = () => {
             </div>
           </div>
         </div>
-        <button class=" bg-gray-800 text-white  ">
+        {(total === 0) ? <h1> Please add to 
+          Cart
+        </h1> :        <button class=" bg-gray-800 text-white  ">
+          <Link to="/checkout">
           Click here to Proceed to Checkout
-        </button>
+          </Link>
+        </button>}
+
       </div>
 
       <hr />
