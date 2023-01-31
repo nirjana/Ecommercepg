@@ -73,9 +73,9 @@ const configuration = {
   connection: {
     host: "satao.db.elephantsql.com",
     port: 5432,
-    user: "fajdksne",
-    password: "qm8Es4DxzQzhfiiGVnNq3deYnzH4Q-rR",
-    database: "fajdksne",
+    user: "ixfkndjf",
+    password: "pai8KiXmaa-ObCf32QNLfPddm1MpoOJ0",
+    database: "ixfkndjf",
   },
     migrations: {
       tableName: 'migrations',
