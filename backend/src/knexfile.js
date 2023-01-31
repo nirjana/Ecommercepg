@@ -68,17 +68,37 @@
 
 
 
+// const configuration = {
+//     client: 'pg',
+//   connection: {
+//     host: "satao.db.elephantsql.com",
+//     port: 5432,
+//     user: "ixfkndjf",
+//     password: "pai8KiXmaa-ObCf32QNLfPddm1MpoOJ0",
+//     database: "ixfkndjf",
+//   },
+//     migrations: {
+//       tableName: 'migrations',
+//     },
+// }
+// export default configuration;
+
 const configuration = {
-    client: 'pg',
+  client: 'pg',
   connection: {
-    host: "satao.db.elephantsql.com",
+    host: 'satao.db.elephantsql.com',
     port: 5432,
-    user: "ixfkndjf",
-    password: "pai8KiXmaa-ObCf32QNLfPddm1MpoOJ0",
-    database: "ixfkndjf",
+    user: 'rhaujtni',
+    password: 'DWKXhQqoy2eX49mkQafUOU_HRwF1pk__',
+    database: 'rhaujtni'
   },
-    migrations: {
-      tableName: 'migrations',
-    },
-}
+  migrations: {
+    tableName: 'migrations',
+  },
+  seeds: {
+    directory: './seeds',
+    stub: './stub/seed.stub'
+  }
+};
+
 export default configuration;
