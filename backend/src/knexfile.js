@@ -80,3 +80,5 @@ const configuration = {
     migrations: {
       tableName: 'migrations',
     },
+
+export default configuration;
