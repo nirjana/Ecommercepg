@@ -55,4 +55,5 @@ REACT_APP_API_URL=http://localhost:8000
 ![image](https://user-images.githubusercontent.com/40952778/215581005-ca29c377-bd1d-470a-ae2e-3b021128f2ed.png)
 
 ##  ER-Diagram
-![image](https://user-images.githubusercontent.com/40952778/215580873-4499e266-0ad4-44e5-8008-5dc0ec66c546.png)
+
+![image](https://user-images.githubusercontent.com/40952778/215582508-7b59af32-6f9f-428d-b6e7-7cb7dab9a086.png)
