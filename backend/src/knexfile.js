@@ -83,26 +83,56 @@
 // }
 // export default configuration;
 
+// const configuration = {
+//   client: 'pg',
+//   connection: {
+//     host: 'satao.db.elephantsql.com',
+//     port: 5432,
+//     user: 'rhaujtni',
+//     password: 'DWKXhQqoy2eX49mkQafUOU_HRwF1pk__',
+//     database: 'rhaujtni'
+//   },
+//     pool: {
+//     min: 0,
+//     max: 20
+//   },
+//   migrations: {
+//     tableName: 'migrations',
+//   },
+//   seeds: {
+//     directory: './seeds',
+//     stub: './stub/seed.stub'
+//   }
+// };
+
+// export default configuration;
+
+
+
+
 const configuration = {
-  client: 'pg',
+  client: "pg",
   connection: {
-    host: 'satao.db.elephantsql.com',
+    host: "dpg-cfdmohhgp3jolcljt72g-a.singapore-postgres.render.com",
     port: 5432,
-    user: 'rhaujtni',
-    password: 'DWKXhQqoy2eX49mkQafUOU_HRwF1pk__',
-    database: 'rhaujtni'
+    user: "pop_2tc6_user",
+    password: "OnFA0JZGoUhHngHcsxK5jBuntcUGGEMb",
+    database: "pop_2tc6",
+
+    keepAlive: true,
+    // timeout: 60000, // increased timeout to 60 seconds
   },
-    pool: {
+  pool: {
     min: 0,
-    max: 20
+    max: 20,
   },
   migrations: {
-    tableName: 'migrations',
+    tableName: "migrations",
   },
   seeds: {
-    directory: './seeds',
-    stub: './stub/seed.stub'
-  }
+    directory: "./seeds",
+    stub: "./stub/seed.stub",
+  },
 };
 
 export default configuration;
