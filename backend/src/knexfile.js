@@ -132,29 +132,29 @@ export default configuration;
 
 
 
-const configuration = {
-  client: "pg",
-  connection: {
-    host: "dpg-cfdmohhgp3jolcljt72g-a.singapore-postgres.render.com",
-    port: 5432,
-    user: "pop_2tc6_user",
-    password: "OnFA0JZGoUhHngHcsxK5jBuntcUGGEMb",
-    database: "pop_2tc6",
+// const configuration = {
+//   client: "pg",
+//   connection: {
+//     host: "dpg-cfdmohhgp3jolcljt72g-a.singapore-postgres.render.com",
+//     port: 5432,
+//     user: "pop_2tc6_user",
+//     password: "OnFA0JZGoUhHngHcsxK5jBuntcUGGEMb",
+//     database: "pop_2tc6",
 
-    keepAlive: true,
-    // timeout: 60000, // increased timeout to 60 seconds
-  },
-  pool: {
-    min: 0,
-    max: 20,
-  },
-  migrations: {
-    tableName: "migrations",
-  },
-  seeds: {
-    directory: "./seeds",
-    stub: "./stub/seed.stub",
-  },
-};
+//     keepAlive: true,
+//     // timeout: 60000, // increased timeout to 60 seconds
+//   },
+//   pool: {
+//     min: 0,
+//     max: 20,
+//   },
+//   migrations: {
+//     tableName: "migrations",
+//   },
+//   seeds: {
+//     directory: "./seeds",
+//     stub: "./stub/seed.stub",
+//   },
+// };
 
-export default configuration;
+// export default configuration;
