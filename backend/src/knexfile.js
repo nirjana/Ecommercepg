@@ -33,6 +33,28 @@
 // //     //password: 'postgres',
 // //    // database: 'ecdb'
 // //   },
+
+
+//ELEPHANT SUJATA 
+//ELEPHANT
+const configuration = {
+  client: "pg",
+  connection: {
+    host: "satao.db.elephantsql.com",
+    port: 5432,
+    user: "ixfkndjf",
+    password: "pai8KiXmaa-ObCf32QNLfPddm1MpoOJ0",
+    database: "ixfkndjf",
+  },
+  migrations: {
+    tableName: "migrations",
+  },
+  seeds: {
+    directory: "./seeds",
+    stub: "./stub/seed.stub",
+  },
+};
+export default configuration;
 // //   migrations: {
 // //     tableName: "migrations",
 // //   },
