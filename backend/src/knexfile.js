@@ -92,6 +92,10 @@ const configuration = {
     password: 'DWKXhQqoy2eX49mkQafUOU_HRwF1pk__',
     database: 'rhaujtni'
   },
+    pool: {
+    min: 0,
+    max: 20
+  },
   migrations: {
     tableName: 'migrations',
   },
