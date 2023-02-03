@@ -37,6 +37,10 @@
 
 //ELEPHANT SUJATA 
 //ELEPHANT
+
+
+import Knex from "knex"
+
 const configuration = {
   client: "pg",
   connection: {
@@ -54,6 +58,8 @@ const configuration = {
     stub: "./stub/seed.stub",
   },
 };
+
+export const connection = Knex(configuration);
 export default configuration;
 // //   migrations: {
 // //     tableName: "migrations",
