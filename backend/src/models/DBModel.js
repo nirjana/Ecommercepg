@@ -2,7 +2,7 @@ import Knex from 'knex';
 import camelize from 'camelize';
 import snakeize from 'snakeize';
 
-import connection from '../knexfile.js';
+import {connection} from '../knexfile.js';
 
 // console.log("knex connection",Knex(connection))
 
@@ -11,10 +11,16 @@ import connection from '../knexfile.js';
  *
  * @class DBModel
  */
+// class DBModel {
+//   constructor(table) {
+//     this.table = table;
+//     this.connection = Knex(connection);
+//   }
+
 class DBModel {
   constructor(table) {
     this.table = table;
-    this.connection = Knex(connection);
+    this.connection = connection;
   }
 
   async getAll() {
