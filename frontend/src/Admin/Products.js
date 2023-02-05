@@ -47,6 +47,7 @@ const Products = () => {
     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded"><Link to="/addproduct">Add Product</Link></button>
             <table>
               <tr>
+                 <th>Product Image</th>
                 <th>Product Name</th>
                 <th>Product Description</th>
                 <th>Price</th>
@@ -55,16 +56,39 @@ const Products = () => {
                 <th>Delete</th>
               </tr>
               {products && products.map((item,i) => {
-                return <>
-               <tr key={item.i}>
-                <td>{item.name}</td>
-                <td>{item.description}</td>
-                <td>{item.price}</td>
-                <td>{item.stock}</td>
-                <td> <Link to={`../products/edit/${item.id}`}>Edit</Link></td>
-                <td> <button  onClick={()=>{Delete(item.id)}}> Delete </button></td>
-                </tr>
-                </>
+                return (
+                  <>
+                    <tr key={item.i}>
+                      <td>
+                        {" "}
+                        <img
+                          src={item.images}
+                          alt={item.id + "img"}
+                          className="p-[10px] h-[233px] w-[233px]"
+                        />
+                      </td>
+                      <td>{item.name}</td>
+                      <td>{item.description}</td>
+                      <td>{item.price}</td>
+                      <td>{item.stock}</td>
+                      <td>
+                        {" "}
+                        <Link to={`../products/edit/${item.id}`}>Edit</Link>
+                      </td>
+                      <td>
+                        {" "}
+                        <button
+                          onClick={() => {
+                            Delete(item.id);
+                          }}
+                        >
+                          {" "}
+                          Delete{" "}
+                        </button>
+                      </td>
+                    </tr>
+                  </>
+                );
               })}
             </table>
             <ToastContainer autoClose={4000}/>
