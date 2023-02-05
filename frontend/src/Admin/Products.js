@@ -5,43 +5,59 @@ import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
 
 const Products = () => {
-  const [products,setProducts] =useState("")
+  const [products, setProducts] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(5);
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/products`)
-    .then(res => res.json())
-    .then(data => {
-      console.log("ddd",data)
-      setProducts(data.data)})
-  },[])
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("ddd", data);
+        setProducts(data.data);
+      });
+  }, []);
 
   const Delete = (id) => {
     fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, {
-      method: 'DELETE', 
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success:', data);
+        console.log("Success:", data);
         fetch(`${process.env.REACT_APP_API_URL}/products`)
-        .then(res => res.json())
-        .then(data => {
-          console.log("ddd",data)
-          if(!data.details)
-          {setProducts(data.data)
-          notify.success("deleted")}
-          else{
-            notify.error(data.details)
-          }
-      })})
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("ddd", data);
+            if (!data.details) {
+              setProducts(data.data);
+              notify.success("deleted");
+            } else {
+              notify.error(data.details);
+            }
+          });
+      })
       .catch((error) => {
-        notify.error(error)
-        console.error('Error:', error);
+        notify.error(error);
+        console.error("Error:", error);
       });
-  }
+  };
 
+  // Get current products
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  
   return (
     <>
       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded">
@@ -61,7 +77,7 @@ const Products = () => {
         </thead>
         <tbody>
           {products &&
-            products.map((item, i) => {
+            currentProducts.map((item) => {
               return (
                 <tr key={item.i} class="hover:bg-gray-700">
                   <td class="border px-9 py-5">
@@ -98,6 +114,18 @@ const Products = () => {
               );
             })}
         </tbody>
+        <div className="p-[10px]">
+          <ul className="pagination">
+            {Array.from(
+              { length: Math.ceil(products.length / productsPerPage) },
+              (_, i) => (
+                <li key={i} className={i + 1 === currentPage ? "active" : ""}>
+                  <button onClick={() => paginate(i + 1)}>{i + 1}</button>
+                </li>
+              )
+            )}
+          </ul>
+        </div>
       </table>
       <ToastContainer autoClose={4000} />
     </>

@@ -16,18 +16,32 @@ export async function createProduct(data) {
   };
 }
 
-//********************     Get all products   ********************//
-export async function getAllProducts() {
-  const data = await new Product().getAll();
-  console.log("data ayauiuaia",data)
-  if (!data) {
-    console.log("Product not Found");
-    throw Boom.badRequest("Product not Found");
-  }
-  return {
-    data: data,
-    message: "Find all  Products sucessfully",
-  };
+// //********************     Get all products   ********************//
+// export async function getAllProducts() {
+//   const data = await new Product().getAll();
+//   console.log("data ayauiuaia",data)
+//   if (!data) {
+//     console.log("Product not Found");
+//     throw Boom.badRequest("Product not Found");
+//   }
+//   return {
+//     data: data,
+//     message: "Find all  Products sucessfully",
+//   };
+// }
+
+//******************** Get all products ********************//
+export async function getAllProducts(pageNumber = 1, itemsPerPage = 12) {
+const data = await new Product().getAll(pageNumber, itemsPerPage);
+console.log("data ayauiuaia", data)
+if (!data) {
+console.log("Product not Found");
+throw Boom.badRequest("Product not Found");
+}
+return {
+data: data,
+message: "Find all Products sucessfully",
+};
 }
 
 //get product details

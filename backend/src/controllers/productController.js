@@ -10,14 +10,27 @@ export function createProduct(req, res, next) {
     .catch((err) => next(err));
 }
 
+// export function getAllProducts(req, res, next) {
+//   const product = req.params;
+//   console.log("dsa",req.params)
+//   productService
+//     .getAllProducts(req.params)
+//     .then((data) => res.json(data))
+//     .catch((err) => next(err));
+// }
+
+
+
 export function getAllProducts(req, res, next) {
-  const product = req.params;
-  console.log("dsa",req.params)
+  const pageNumber = req.query.page || 1;
+  const itemsPerPage = req.query.limit || 10;
+
   productService
-    .getAllProducts(req.params)
+    .getAllProducts(pageNumber, itemsPerPage)
     .then((data) => res.json(data))
     .catch((err) => next(err));
 }
+
 //get product details
 
 export function getProductDetails(req, res, next) {
