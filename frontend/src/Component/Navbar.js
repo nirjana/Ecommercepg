@@ -31,6 +31,7 @@ export const Navbar = () => {
         <img src={img} alt="hero img" className='h-[70px] w-[70px] pt-[5px]'/>
         </Link>
         </div>
+        
         <ul className="inline-block flex text-grey justify-end py-[20px] items-center">
             <li className="p-[10px] hover:bg-[orange] "> <Link to = "/">Home</Link></li>
             <li className="p-[10px] hover:bg-[orange] "> <Link to ="/">Contact</Link></li>
@@ -64,6 +65,7 @@ export const Navbar = () => {
                
                                                </li>
                                               </div>
+                                              
                                        <div className="dropdown"><li className="last small-content dropbtn">
                                                Login 
                                               <div className="dropdown-content">
@@ -73,6 +75,8 @@ export const Navbar = () => {
                
                                                </li>
                                               </div>
+                                              
+                                              
                                        </>}
         </ul>
     </div>
