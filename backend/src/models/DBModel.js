@@ -10,9 +10,11 @@ import {connection} from '../knexfile.js';
  *
  * @class DBModel
  */
+
 class DBModel {
   constructor(table) {
     this.table = table;
+    this.connection = connection;
   }
 
   async getAll() {
