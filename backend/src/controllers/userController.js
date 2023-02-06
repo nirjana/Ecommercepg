@@ -36,9 +36,11 @@ export function checkoutUser(req, res, next) {
  * @param {Function} next
  */
 export function getAllUsers(req, res, next) {
+    const pageNumber = req.query.page || 1;
+    const itemsPerPage = req.query.limit || 10;
     console.log("pc",req.query);
     userService
-      .getAllUsers()
+      .getAllUsers(pageNumber, itemsPerPage)
       .then((data) => res.json(data))
       .catch((err) => next(err));
   }

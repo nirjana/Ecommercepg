@@ -4,6 +4,9 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./Component/Login";
 import Register from "./Component/Register";
 import DetailProduct from "./Component/DetailProduct";
+
+import DetailUser from "./Component/DetailUser";
+
 import Dashboard from "./Admin/Dashboard";
 import AddProduct from "./Admin/AddProduct";
 import EditProduct from "./Admin/EditProduct";
@@ -32,6 +35,7 @@ function App() {
         <Route exact path="/userRegister" element={<UserRegister />} />
         <Route exact path="/products" element={<Products />} />
         <Route exact path="/products/:id" element={<DetailProduct />} />
+        <Route exact path="/users/:id" element={<DetailUser/>} />
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/addproduct" element={<AddProduct />} />
         <Route exact path="/products/edit/:id" element={<EditProduct />} />

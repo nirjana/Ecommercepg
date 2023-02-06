@@ -41,13 +41,13 @@ export async function saveUser(data) {
     }
 }
 
-export async function getAllUsers() {
-    const returnedData = await new User().getAll();
+export async function getAllUsers(pageNumber = 1, itemsPerPage = 10) {
+  const returnedData = await new User().getAll(pageNumber, itemsPerPage);
 
-    return {
-        data: returnedData,
-        message: 'Succesfully fetched all data'
-    }
+  return {
+    data: returnedData,
+    message: "Succesfully fetched all data",
+  };
 }
 
 export async function getUserDetails(id) {
