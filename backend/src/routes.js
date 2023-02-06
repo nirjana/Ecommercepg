@@ -55,5 +55,7 @@ router.post(
 
   router.delete("/products/:id", productController.deleteProduct);
 
+  router.get("/cart", productController.deleteProduct);
+
 
 export default router;
