@@ -34,7 +34,7 @@ router.put('/users/:userIdentifier',userController.updateUser)
 
 router.delete('/users/:userIdentifier',userController.deleteUser)
 
-router.get("/users/:userIdentifier", userController.getUserDetails);
+router.get("/users/:id", userController.getUserDetails);
 router.post("/userRegister/checkout", userController.checkoutUser);
 
 router.get("/products", productController.getAllProducts);

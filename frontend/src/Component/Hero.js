@@ -52,7 +52,7 @@ const Carousel = () => {
   return (
     <div className="carousel my-12 mx-auto">
       <h2 className="text-4xl leading-8 font-semibold mb-12 text-slate-700">
-        Our Tranding Products
+        Our Trending Products
       </h2>
       <div className="relative overflow-hidden">
         <div className="flex justify-between absolute top left w-full h-full">

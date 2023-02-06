@@ -4,12 +4,15 @@ import { useState} from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { ToastContainer } from 'react-toastify';
-import * as notify from "../utils/notify.js"
+import * as notify from "../utils/notify.js";
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
   const [fullname,setFullname] = useState("");
   const [username,setUsername] = useState("");
   const [email,setEmail] = useState("");
+    const navigate = useNavigate();
   const [password,setPassword] = useState("");
   const [repassword,setRepassword] = useState("");
 
@@ -27,8 +30,10 @@ const Register = () => {
         .then((response) => response.json())
         .then((data) => {
           if(!data.details){
-          console.log('Success:', data);
-          notify.success("registered")}
+            console.log("Success:", data);
+            notify.success("registered");
+            navigate("/");
+          }
           else{
             notify.error(data.details)
           }
