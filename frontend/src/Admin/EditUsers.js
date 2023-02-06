@@ -4,6 +4,7 @@ import { useState} from 'react';
 import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
 import { useParams } from 'react-router-dom';
+import authHeader from '../authentication/authHeader.js';
 
 const Register = () => {
   const [fullname,setFullname] = useState("");
@@ -19,9 +20,7 @@ const Register = () => {
       {console.log("error")} 
       fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
         method: 'PUT', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: authHeader(),
         body: JSON.stringify({name:fullname,username:username,password:password,email:email}),
       })
       .then((response) => response.json())
@@ -52,7 +51,7 @@ const Register = () => {
             <label for ="password" className='text-gray-600'>Password</label>
             <input type="password" id="password" value={password||""} placeholder="Enter Password" onChange={(e)=>{setPassword(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md" />
             <label for ="repassword" className='text-gray-600'>Repeat Password</label>
-            <input type="repassword" id="repassword" value={repassword||""} placeholder="Enter Password Again" onChange={(e)=>{setRepassword(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md" />
+            <input type="password" id="repassword" value={repassword||""} placeholder="Enter Password Again" onChange={(e)=>{setRepassword(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md" />
             <button type="submit" className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] text-white rounded-md bg-green-600">REGISTER</button>
           </form>
           <ToastContainer autoClose={4000}/>
