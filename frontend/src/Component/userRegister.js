@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useState} from 'react';
 import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
+import authHeader from '../authentication/authHeader.js';
 
 const Register = () => {
   const [fullname,setFullname] = useState("");
@@ -17,9 +18,7 @@ const Register = () => {
       {console.log("error")} 
       fetch(`${process.env.REACT_APP_API_URL}/userRegister`, {
         method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name:fullname,username:username,password:password,email:email}),
       })
         .then((response) => response.json())

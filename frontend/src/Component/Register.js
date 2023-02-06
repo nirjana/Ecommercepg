@@ -4,31 +4,36 @@ import { useState} from 'react';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { ToastContainer } from 'react-toastify';
-import * as notify from "../utils/notify.js"
+import * as notify from "../utils/notify.js";
+import { useNavigate } from 'react-router-dom';
+
 
 const Register = () => {
   const [fullname,setFullname] = useState("");
   const [username,setUsername] = useState("");
   const [email,setEmail] = useState("");
+    const navigate = useNavigate();
   const [password,setPassword] = useState("");
   const [repassword,setRepassword] = useState("");
 
+
     const handleSubmit = (event) => {
+      console.log("register form data",{name:fullname,username:username,password:password,email:email})
       event.preventDefault();
       if(password !== repassword)
       {console.log("error")} 
       fetch(`${process.env.REACT_APP_API_URL}/register`, {
         method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name:fullname,username:username,password:password,email:email}),
       })
         .then((response) => response.json())
         .then((data) => {
           if(!data.details){
-          console.log('Success:', data);
-          notify.success("registered")}
+            console.log("Success:", data);
+            notify.success("registered");
+            navigate("/");
+          }
           else{
             notify.error(data.details)
           }

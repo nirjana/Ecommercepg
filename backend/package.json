@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "NODE_ENV=production node index.js",
-    "start:dev": "NODE_ENV=development nodemon index.js"
+    "start:dev": "NODE_ENV=development nodemon index.js",
+    "test": "babel-node your_test_file.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +34,17 @@
     "knex": "^2.4.2",
     "nodemon": "^2.0.20",
     "pg": "^8.9.0",
+    "sinon": "^15.0.1",
     "snakeize": "^0.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "ava": "^5.1.1"
+  },
+  "ava": {
+    "failWithoutAssertions": false
   }
 }

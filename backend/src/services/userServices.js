@@ -1,10 +1,10 @@
 import Boom from "@hapi/boom";
 
 import User from "../models/user.js"
+import Checkout from "../models/checkout.js";
 import { hash, compare, createToken } from '../utils/crypt.js';
 
 export async function registerUser(data) {
-    const {name,password,email,avatar} =data;
    console.log(data)
     const existingUser = await new User().findByParams(data);
     console.log("esi",existingUser)
@@ -18,7 +18,7 @@ export async function registerUser(data) {
 
     return {
         data: insertedData,
-        message: 'Added User sucessfully',
+        message: 'Added User successfully',
     }
 }
 
@@ -41,13 +41,13 @@ export async function saveUser(data) {
     }
 }
 
-export async function getAllUsers() {
-    const returnedData = await new User().getAll();
+export async function getAllUsers(pageNumber = 1, itemsPerPage = 10) {
+  const returnedData = await new User().getAll(pageNumber, itemsPerPage);
 
-    return {
-        data: returnedData,
-        message: 'Succesfully fetched all data'
-    }
+  return {
+    data: returnedData,
+    message: "Succesfully fetched all data",
+  };
 }
 
 export async function getUserDetails(id) {
@@ -60,7 +60,7 @@ export async function getUserDetails(id) {
     }
     return {
       data: insertedData,
-      message: "Find U{ser} sucessfully",
+      message: "Find User sucessfully",
     };
   }
   
@@ -85,6 +85,7 @@ console.log("updateduser srvice",updatedData)
 
 export async function deleteUserById(id) {
     const returnedData = await new User().removeById(id);
+    console.log("Deleteservices",returnedData)
 
     return {
         data: returnedData,
@@ -132,5 +133,16 @@ export async function login(params) {
 
 
 
+  export async function saveCheckout(data) {
+    const { id, name, address, phone, email } = data;
+    console.log("eta data", { name: name });
 
+    const insertedData = await new Checkout().save(data);
+    console.log("enset", insertedData);
+
+    return {
+      data: insertedData,
+      message: "Added Checkout sucessfully",
+    };
+  }
  

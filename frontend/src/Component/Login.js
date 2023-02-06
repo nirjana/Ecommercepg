@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link,useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
 import * as Sentry from "@sentry/react";
@@ -20,13 +20,11 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success:', data.data.token);
         if (data.data.token) {
-          console.log('bhitra:', data);
           localStorage.setItem("user", JSON.stringify(data.data.user));
           localStorage.setItem("token", JSON.stringify(data.data.token));
           notify.success("Login")
-          navigate("/")
+          navigate("/");
           window.location.reload();
         }
         else{
@@ -36,7 +34,7 @@ const Login = () => {
       })
       .catch((error) => {
         notify.error(error)
-        console.error('Error:', error);
+
         Sentry.captureException(error)
       });
   }

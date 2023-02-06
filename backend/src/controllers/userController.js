@@ -1,6 +1,7 @@
 import * as userService from "../services/userServices.js"
 
 export function registerUser(req,res,next) {
+  console.log("user req.body controller",req.body)
     userService
     .registerUser(req.body)
     .then((data) => res.json(data))
@@ -17,6 +18,16 @@ export function addUser(req, res, next) {
     next(err)}); 
 }
 
+export function checkoutUser(req, res, next) {
+  const { name, email,phone,address} = req.body;
+  console.log("checkout", req.body);
+  userService
+    .saveCheckout(req.body)
+    .then((data) => res.json(data))
+    .catch((err) => next(err));
+}
+
+
 /**
  * Controller to get details of all Users.
  *
@@ -25,9 +36,11 @@ export function addUser(req, res, next) {
  * @param {Function} next
  */
 export function getAllUsers(req, res, next) {
+    const pageNumber = req.query.page || 1;
+    const itemsPerPage = req.query.limit || 10;
     console.log("pc",req.query);
     userService
-      .getAllUsers()
+      .getAllUsers(pageNumber, itemsPerPage)
       .then((data) => res.json(data))
       .catch((err) => next(err));
   }
