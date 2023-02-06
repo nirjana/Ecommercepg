@@ -47,7 +47,8 @@ function App() {
 // function App() {
 //   return <>
 //   <p>hii</p>
-//   <Navbar/></>
+//   <Navbar/>
+//   </>
 // }
 
 export default Sentry.withProfiler(App);
