@@ -18,6 +18,8 @@ export function addAdmin(req, res, next) {
  * @param {Object} res
  * @param {Function} next
  */
+
+//details of functions
 export function getAllAdmins(req, res, next) {
     console.log("pc",req.query);
     adminService

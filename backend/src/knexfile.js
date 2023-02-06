@@ -1,3 +1,5 @@
+import Knex from 'knex';
+
 const configuration = {
   client: 'pg',
   connection: {
@@ -15,7 +17,8 @@ const configuration = {
     stub: './stub/seed.stub'
   }
 };
-export default configuration;
+export const connection = Knex(configuration);
+// export default configuration;
 
 // // const configuration = {
 // //   client: 'pg',

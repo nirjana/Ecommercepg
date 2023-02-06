@@ -5,7 +5,6 @@ import Checkout from "../models/checkout.js";
 import { hash, compare, createToken } from '../utils/crypt.js';
 
 export async function registerUser(data) {
-    const {name,password,email,avatar} =data;
    console.log(data)
     const existingUser = await new User().findByParams(data);
     console.log("esi",existingUser)
@@ -19,7 +18,7 @@ export async function registerUser(data) {
 
     return {
         data: insertedData,
-        message: 'Added User sucessfully',
+        message: 'Added User successfully',
     }
 }
 
@@ -61,7 +60,7 @@ export async function getUserDetails(id) {
     }
     return {
       data: insertedData,
-      message: "Find U{ser} sucessfully",
+      message: "Find User sucessfully",
     };
   }
   
@@ -86,6 +85,7 @@ console.log("updateduser srvice",updatedData)
 
 export async function deleteUserById(id) {
     const returnedData = await new User().removeById(id);
+    console.log("Deleteservices",returnedData)
 
     return {
         data: returnedData,

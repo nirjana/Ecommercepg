@@ -8,8 +8,8 @@ import Joi from 'joi';
  */
 export function validateBody(schema) {
   return function (req, res, next) {
+    console.log("body",req.body);
     try {
-      console.log("body",req.body);
       Joi.assert(req.body, schema, { abortEarly: false });
 
       next();

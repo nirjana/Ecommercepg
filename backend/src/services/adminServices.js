@@ -6,15 +6,15 @@ import { hash, compare, createToken } from '../utils/crypt.js';
 
 export async function saveAdmin(data) {
     const { id ,name,username,address,password,email} =data;
-    console.log("service",data)
     const existingUser = await new Admin().findByParams({name:name ,username:username,email:email});
     console.log("service",data)
     if (existingUser) {
         console.log("user already exist")
         throw Boom.badRequest('User already exist');
     }
+    const hashedPassword = hash(password);
 
-    const insertedData = await new Admin().save(data);
+    const insertedData = await new Admin().save({name:name ,username:username,email:email,password:hashedPassword});
     console.log("enset",insertedData)
 
     return {
@@ -73,20 +73,17 @@ export async function login(params) {
    
       throw new Boom.badRequest('Invalid credentials');
     }
- 
-  //  const isPasswordMatched = await existingUser.comparePassword(password); //to check the input password with database ma vayeko password
-  //  console.log(isPasswordMatched + `PasswordMatched`);
+    const doesPasswordMatch = compare(password, existingUser.password);
+    console.log("ehat",doesPasswordMatch);
+  
+    if (!doesPasswordMatch) {
+      logger.error('Invalid credentials: Password does not match');
+  
+      throw new Boom.badRequest('Invalid credentials');
+    }
 
-  //  if (!isPasswordMatched) {
-  //    return {
-  //      message: "Invalid email or (password)",
-  //    };
-
-  //    //  return next(new ErrorHander("Invalid email or password "), 401); //401 unauthorized
-  //  }
-
-    // const tokenJWT = existingUser.getJWTToken();
     const user = {
+   
       id: existingUser.id,
       name: existingUser.name,
       email: existingUser.email,

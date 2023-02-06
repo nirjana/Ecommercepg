@@ -1,6 +1,7 @@
 import * as userService from "../services/userServices.js"
 
 export function registerUser(req,res,next) {
+  console.log("user req.body controller",req.body)
     userService
     .registerUser(req.body)
     .then((data) => res.json(data))
