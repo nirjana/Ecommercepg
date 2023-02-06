@@ -2,8 +2,8 @@ import React from 'react'
 import img from "../image/hero.jpg"
 import img1 from "../image/hero2.jpg"
 
-import { Carousel } from 'react-responsive-carousel';
-import Slider from "react-slick";
+// import { Carousel } from 'react-responsive-carousel';
+// import Slider from "react-slick";
 
 const Hero = () => {
   var settings = {

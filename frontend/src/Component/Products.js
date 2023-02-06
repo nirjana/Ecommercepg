@@ -22,14 +22,22 @@ const Products = () => {
   //     setProducts(data.data)})
   //   .catch(err => console.error(err))
   // },[])
-  
   useEffect(()=>{
-    axios.get(`${process.env.REACT_APP_API_URL}/products`)
+    fetch(`${process.env.REACT_APP_API_URL}/products`,
+    {method: 'GET'})
     .then(data => {
       console.log("yo data",data)
       setProducts(data.data.data)})
     .catch(err => console.error(err))
   },[])
+  
+  // useEffect(()=>{
+  //   axios.get(`${process.env.REACT_APP_API_URL}/products`)
+  //   .then(data => {
+  //     console.log("yo data",data)
+  //     setProducts(data.data.data)})
+  //   .catch(err => console.error(err))
+  // },[])
 
   return (
     <>

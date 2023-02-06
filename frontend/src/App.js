@@ -44,4 +44,10 @@ function App() {
   );
 }
 
+// function App() {
+//   return <>
+//   <p>hii</p>
+//   <Navbar/></>
+// }
+
 export default Sentry.withProfiler(App);
