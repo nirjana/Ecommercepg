@@ -22,14 +22,22 @@ const Products = () => {
   //     setProducts(data.data)})
   //   .catch(err => console.error(err))
   // },[])
-  
   useEffect(()=>{
-    axios.get(`${process.env.REACT_APP_API_URL}/products`)
+    fetch(`${process.env.REACT_APP_API_URL}/products`,
+    {method: 'GET'})
     .then(data => {
       console.log("yo data",data)
       setProducts(data.data.data)})
     .catch(err => console.error(err))
   },[])
+  
+  // useEffect(()=>{
+  //   axios.get(`${process.env.REACT_APP_API_URL}/products`)
+  //   .then(data => {
+  //     console.log("yo data",data)
+  //     setProducts(data.data.data)})
+  //   .catch(err => console.error(err))
+  // },[])
 
   return (
     <>
@@ -40,7 +48,7 @@ const Products = () => {
     products && products.slice(0,10).map((item)=>{
       return(
         <>
-        <Link to={`products/${item.id}`}>
+        <Link to={`/products/${item.id}`}>
         <div key={item.id} className="card h-[373] w-[234px] inline-block text-center shadow-xl m-[20px] hover:mt-[-0.5px]">
           <img src={item.images} alt ={item.id+"img"}  className="p-[10px] h-[233px] w-[233px]"/>
           <p className='p-[10px] text-orange-500'>{item.name}</p>
@@ -51,9 +59,6 @@ const Products = () => {
       )
     })}
     </div>
-    <div><p>hiiii
-      {console.log("products",products)}
-      </p></div>
     </>
   )
 }

@@ -20,9 +20,7 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success:', data.data.token);
         if (data.data.token) {
-          console.log('bhitra:', data);
           localStorage.setItem("user", JSON.stringify(data.data.user));
           localStorage.setItem("token", JSON.stringify(data.data.token));
           notify.success("Login")
@@ -36,7 +34,7 @@ const Login = () => {
       })
       .catch((error) => {
         notify.error(error)
-        console.error('Error:', error);
+
         Sentry.captureException(error)
       });
   }

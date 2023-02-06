@@ -13,15 +13,15 @@ const Register = () => {
   const [password,setPassword] = useState("");
   const [repassword,setRepassword] = useState("");
 
+
     const handleSubmit = (event) => {
+      console.log("register form data",{name:fullname,username:username,password:password,email:email})
       event.preventDefault();
       if(password !== repassword)
       {console.log("error")} 
       fetch(`${process.env.REACT_APP_API_URL}/register`, {
         method: 'POST', // or 'PUT'
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({name:fullname,username:username,password:password,email:email}),
       })
         .then((response) => response.json())

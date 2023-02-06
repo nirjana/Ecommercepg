@@ -9,6 +9,8 @@ export function up(knex) {
       table.string('username', 100).notNull();
       table.string('email', 100).unique().notNull();
       table.string('password', 200).notNull();
+        table.string("address", 200);
+           table.string("phone", 10);
       table.timestamps(true,true);
     });
   }

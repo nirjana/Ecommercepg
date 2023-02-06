@@ -1,6 +1,6 @@
 export const Footer = () => {
     return <>
-    <div className="footer flex flex-row justify-between bg-[#838383] text-white p-[20px] mt-[40px]">
+    <div className="footer flex flex-row justify-between bg-[#8c8c8c] text-white p-[20px] mt-[40px]">
         <ul>
             <li>Shoes</li>
             <li>Contact</li>

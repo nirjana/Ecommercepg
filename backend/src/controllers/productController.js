@@ -3,7 +3,7 @@ import * as productService from "../services/productServices.js";
 //Create Product-- only for Admin
 export function createProduct(req, res, next) {
   const product = req.body;
-  console.log("pro",req.body);
+
   productService
     .createProduct(req.body)
     .then((data) => res.json(data))
