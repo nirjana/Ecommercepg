@@ -2,7 +2,8 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { ToastContainer } from 'react-toastify';
-import * as notify from "../utils/notify.js"
+import * as notify from "../utils/notify.js";
+import authHeader from '../authentication/authHeader.js';
 
 const Products = () => {
   const [products, setProducts] = useState("");
@@ -21,9 +22,7 @@ const Products = () => {
   const Delete = (id) => {
     fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: authHeader(),
     })
       .then((response) => response.json())
       .then((data) => {

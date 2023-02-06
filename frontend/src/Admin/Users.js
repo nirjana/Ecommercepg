@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
 import "./admin.css";
+import authHeader from '../authentication/authHeader.js';
 
 const Users = () => {
   const [users, setUsers] = useState("");
@@ -22,9 +23,7 @@ const Users = () => {
   const Delete = (id) => {
     fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: authHeader(),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -65,7 +64,7 @@ const Users = () => {
           <tr>
             <th class="px-4 py-2">Full Name</th>
             <th class="px-4 py-2">Username</th>
-            <th class="px-4 py-2">Password</th>
+            <th class="px-4 py-2">Email</th>
             <th class="px-4 py-2">Edit</th>
             <th class="px-4 py-2">Delete</th>
           </tr>
@@ -77,14 +76,14 @@ const Users = () => {
                 <tr key={item.i} class="hover:bg-gray-700">
                   <td>{item.name}</td>
                   <td>{item.username}</td>
-                  <td>{item.password}</td>
+                  <td>{item.email}</td>
                   <td className="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                     <button
                       type="button"
                       class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
                     >
                       {" "}
-                      <Link to={`../products/edit/${item.id}`}> Edit </Link>
+                      <Link to={`../users/edit/${item.id}`}> Edit </Link>
                     </button>
                   </td>
                   <td>
@@ -135,4 +134,4 @@ const Users = () => {
   );
 }
 
-  export default Users
+export default Users

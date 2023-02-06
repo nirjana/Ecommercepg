@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ToastContainer} from 'react-toastify';
-import * as notify from "../utils/notify.js"
+import * as notify from "../utils/notify.js";
+import authHeader from '../authentication/authHeader.js';
 
 export default function EditProduct() {
   const [title,setTitle] = useState("");
@@ -17,9 +18,7 @@ export default function EditProduct() {
     // fetch(`http://localhost:8000/products/${id}`, {
       fetch(`${process.env.REACT_APP_API_URL}/products/${id}`, {
       method: 'PUT', 
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: authHeader(),
       body: JSON.stringify({name:title,description:description,price:price,stock:stock,category:category,images:image}),
     })
     .then((response) => response.json())

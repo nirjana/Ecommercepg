@@ -6,6 +6,9 @@ import * as productController from "./controllers/productController.js";
 import addAdminSchema from "./schemas/addAdmin.js";
 import addUserSchema from "./schemas/addUser.js";
 import addProductSchema from "./schemas/addProduct.js";
+import editProductSchema from "./schemas/editProduct.js";
+import editUserSchema from "./schemas/editUser.js";
+import editAdminSchema from "./schemas/editAdmin.js";
 import { validateBody } from './middleware/validation.js';
 import authenticate from './middleware/authenticate.js';
 import * as dotenv from "dotenv";
@@ -21,22 +24,22 @@ router.get('/',adminController.getAllAdmins)
 router.post('/login',adminController.login)
 
 router.post('/register',
-// validateBody(addAdminSchema),
+validateBody(addAdminSchema),
 adminController.registerAdmin)
 
-router.put('/:adminIdentifier',adminController.updateAdmin)
+router.put('/:adminIdentifier',validateBody(editAdminSchema),adminController.updateAdmin)
 
 router.delete('/:adminIdentifier',adminController.deleteAdmin)
 
-router.post('/userLogin',authenticate,validateBody(addUserSchema),userController.login)
+router.post('/userLogin',userController.login)
 
-router.post('/userRegister',userController.registerUser)
+router.post('/userRegister',validateBody(addUserSchema),userController.registerUser)
 
 router.get("/users", userController.getAllUsers);
 
-router.put('/users/:userIdentifier',userController.updateUser)
+router.put('/users/:userIdentifier',authenticate,validateBody(editUserSchema),userController.updateUser)
 
-router.delete('/users/:userIdentifier',userController.deleteUser)
+router.delete('/users/:userIdentifier',authenticate,userController.deleteUser)
 
 router.get("/users/:id", userController.getUserDetails);
 router.post("/userRegister/checkout", userController.checkoutUser);
@@ -51,9 +54,9 @@ router.post(
   );
   router.get("/products/:id",productController.getProductDetails);
 
-  router.put("/products/:id",authenticate,productController.updateProduct);
+  router.put("/products/:id",authenticate,validateBody(editProductSchema),productController.updateProduct);
 
-  router.delete("/products/:id", productController.deleteProduct);
+  router.delete("/products/:id", authenticate,productController.deleteProduct);
 
   router.get("/cart", productController.deleteProduct);
 
