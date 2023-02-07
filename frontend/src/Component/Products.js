@@ -16,7 +16,6 @@ const Products = () => {
   });
 
   useEffect(() => {
-    // /     axios.get(`${process.env.REACT_APP_API_URL}/products`)
     axios
       .get(`${process.env.REACT_APP_API_URL}/products`)
       .then((data) => {

@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import * as notify from "../utils/notify.js";
 import authHeader from "../authentication/authHeader.js";
 
+//checkoutform is diaplayed when the user orders the items/products
 const CheckoutForm = () => {
   const [fullname, setFullname] = useState(""); // State for storing the full name of the user
   const [email, setEmail] = useState(""); // State for storing the email of the user
