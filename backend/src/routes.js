@@ -39,6 +39,7 @@ router.put('/users/:userIdentifier',authenticate,validateBody(editUserSchema),us
 router.delete('/users/:userIdentifier',authenticate,userController.deleteUser)
 
 router.get("/users/:id", userController.getUserDetails);
+
 router.post("/userRegister/checkout", userController.checkoutUser);
 
 router.get("/products", productController.getAllProducts);
