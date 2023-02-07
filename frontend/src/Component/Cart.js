@@ -1,39 +1,3 @@
-// import React from 'react'
-// import { Navbar } from './Navbar'
-// import { Footer } from './Footer'
-// import { useSelector,useDispatch } from 'react-redux'
-// import { Link } from 'react-router-dom'
-
-// const Cart = () => {
-//     const products = useSelector(state => {
-//         return state.cart.products
-//     })
-//   return (
-//     <>
-//     <p className='text-[40px]'>Cart Items</p>
-//     <hr />
-//     <div className="flex flex-wrap">
-//     {
-//     products && products.slice(0,10).map((item)=>{
-//       return(
-//         <>
-//         <Link to={`products/${item.id}`}>
-//         <div key={item.id} className="card h-[373] w-[234px] inline-block text-center shadow-xl m-[20px] hover:mt-[-0.5px]">
-//           <img src={item.images} alt ={item.id+"img"}  className="p-[10px] h-[233px] w-[233px]"/>
-//           <span className='p-[10px] text-orange-500'>{item.name}</span>
-//           <span className='p-[10px] text-orange-500 text-end'>({item.cartQuantity})</span>
-//           <p className='pb-[10px]'>Rs.{item.price}</p>
-//         </div>
-//         </Link>
-//         </>
-//       )
-//     })}
-//     </div>
-// </>
-//   )
-// }
-
-// export default Cart
 
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -50,17 +14,20 @@ const Cart = () => {
   // const products = useSelector((state) => {
   //   return state.cart.products;
   // });
-  const products = JSON.parse(localStorage.getItem("cart"))
 
-  console.log("cart items,",products)
+  const products = JSON.parse(localStorage.getItem("cart")); // Get cart items from local storage
 
+  console.log("cart items,", products);
+
+  // Use selector hook to get the count of items in the cart from the Redux store
   const cartCount = useSelector((state) => {
     console.log("this is nav state", state.cart.count);
     return state.cart.count;
   });
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(undefined); // State hook to get the current user from the authService
   console.log("currenttt", currentUser);
 
+  // UseEffect hook to retrieve the current user and set it to the currentUser state
   useEffect(() => {
     const user = authService.getCurrentUser();
     console.log("userla", user);
@@ -100,9 +67,11 @@ const Cart = () => {
                       Sub Total:
                     </td>
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                      {cartTotal= products.reduce((total,item) => {
-                        return total + (item.cartQuantity * item.price)
-                      },0)}
+                      {
+                        (cartTotal = products.reduce((total, item) => {
+                          return total + item.cartQuantity * item.price;
+                        }, 0))
+                      }
                     </td>
                   </tr>
                   <tr class="bg-white border-b">
@@ -110,16 +79,16 @@ const Cart = () => {
                       Shipping 10%:
                     </td>
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                      {shippingTotal = 0.1 *cartTotal}
+                      {(shippingTotal = 0.1 * cartTotal)}
                     </td>
                   </tr>
                   <tr class="bg-white border-b">
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                      Total: 
+                      Total:
                     </td>
 
                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                    {total= cartTotal +shippingTotal}
+                      {(total = cartTotal + shippingTotal)}
                     </td>
                   </tr>
                 </tbody>
@@ -127,14 +96,13 @@ const Cart = () => {
             </div>
           </div>
         </div>
-        {(total === 0) ? <h1> Please add to 
-          Cart
-        </h1> :        <button class=" bg-gray-800 text-white  ">
-          <Link to="/checkout">
-          Click here to Proceed to Checkout
-          </Link>
-        </button>}
-
+        {total === 0 ? (
+          <h1> Please add to Cart</h1>
+        ) : (
+          <button class=" bg-gray-800 text-white  ">
+            <Link to="/checkout">Click here to Proceed to Checkout</Link>
+          </button>
+        )}
       </div>
 
       <hr />
