@@ -7,13 +7,12 @@ import { useParams } from "react-router-dom";
 
 export const Navbar = () => {
    const { id } = useParams();
+   const [cartLength,setCartLength] = useState(0);
     const cartCount =useSelector(state => {
-        console.log("this is nav state",state.cart.count) 
-        return state.cart.count})
+      console.log("this is nav state",state.cart.count) 
+      return state.cart.count})
         const [currentUser, setCurrentUser] = useState(undefined);
   console.log("currenttt",currentUser);
-
-
 
   useEffect(() => {
     const user = authService.getCurrentUser();
@@ -24,15 +23,24 @@ export const Navbar = () => {
     }
   }, []);
 
+  useEffect(()=> {
+    const cart = JSON.parse(localStorage.getItem("cart"))
+    const user = JSON.parse(localStorage.getItem("user"))
+    const cartCounts = cart && cart.reduce((acc,item) => {
+      return acc + item.cartQuantity
+    },0)
+    setCartLength(cartCounts)
+  },[cartCount])
+
   const logOut = () => {
     authService.logout();
     window.location.reload();
+    window.location.href("/");
   };  
 
-
-
-    const [users, setUsers] = useState();
-
+const [users, setUsers] = useState();
+const [showDropdown, setShowDropdown] = useState(false);
+const [showDropdown2, setShowDropdown2] = useState(false);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_URL}/users/${id}`)
@@ -76,10 +84,10 @@ export const Navbar = () => {
                   <Link to="/cart">
                     <li className="p-[10px] hover:bg-[orange] ">
                       {" "}
-                      <Link to="/cart"> Cart({cartCount}) </Link>
+                      <Link to="/cart"> Cart({cartLength}) </Link>
                     </li>
                   </Link>
-                  <Link to="/login">
+                  <Link to="/">
                     <li
                       className="p-[10px] hover:bg-[orange] "
                       onClick={logOut}
@@ -87,21 +95,14 @@ export const Navbar = () => {
                       {" "}
                       Logout{" "}
                     </li>
-                  </Link>
-                
-                 
-                   
-                       
-                   
-                    {" "}
-               
+                  </Link>{" "}
                 </>
               ) : (
                 <>
                   <Link to="/dashboard">
                     <li className="p-[10px] hover:bg-[orange] "> Dashboard </li>
                   </Link>
-                  <Link to="/login">
+                  <Link to="/">
                     <li
                       onClick={logOut}
                       className="p-[10px] hover:bg-[orange] "
@@ -114,28 +115,77 @@ export const Navbar = () => {
               )
             ) : (
               <>
-                <div className="dropdown">
-                  <li className="last small-content dropbtn">
+                <div
+                  className="relative"
+                  onMouseEnter={() => setShowDropdown(true)}
+                >
+                  <button
+                    className="p-[10px] hover:bg-[orange] "
+                    // className="font-medium text-white bg-orange-500 py-2 px-4 rounded-full hover:bg-orange-600"
+                    onClick={() => setShowDropdown(!showDropdown)}
+                  >
                     Sign Up
-                    <div className="dropdown-content">
-                      <Link to="/register" className="hover:bg-[orange] ">
-                        Admin{" "}
-                      </Link>
-                      <Link to="/userRegister" className="hover:bg-[orange] ">
-                        Customer{" "}
-                      </Link>
+                  </button>
+                  {showDropdown && (
+                    <div
+                      className="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg"
+                      onMouseEnter={() => setShowDropdown(true)}
+                      onMouseLeave={() => setShowDropdown(false)}
+                    >
+                      <div className="bg-white rounded-md shadow-xs">
+                        <div className="py-1">
+                          <Link
+                            to="/register"
+                            className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white"
+                          >
+                            Admin
+                          </Link>
+                          <Link
+                            to="/userRegister"
+                            className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white"
+                          >
+                            Customer
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                  </li>
+                  )}
                 </div>
-
-                <div className="dropdown">
-                  <li className="last small-content dropbtn">
+                <div
+                  className="relative"
+                  onMouseEnter={() => setShowDropdown2(true)}
+                >
+                  <button
+                    className="p-[10px] hover:bg-[orange] "
+                    // className="font-medium text-white bg-orange-500 py-2 px-4 rounded-full hover:bg-orange-600"
+                    onClick={() => setShowDropdown2(!showDropdown2)}
+                  >
                     Login
-                    <div className="dropdown-content">
-                      <Link to="/login">Admin </Link>
-                      <Link to="/userLogin">Customer </Link>
+                  </button>
+                  {showDropdown2 && (
+                    <div
+                      className="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg"
+                      onMouseEnter={() => setShowDropdown2(true)}
+                      onMouseLeave={() => setShowDropdown2(false)}
+                    >
+                      <div className="bg-white rounded-md shadow-xs">
+                        <div className="py-1">
+                          <Link
+                            to="/login"
+                            className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white"
+                          >
+                            Admin
+                          </Link>
+                          <Link
+                            to="/userLogin"
+                            className="block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-orange-500 hover:text-white"
+                          >
+                            Customer
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                  </li>
+                  )}
                 </div>
               </>
             )}

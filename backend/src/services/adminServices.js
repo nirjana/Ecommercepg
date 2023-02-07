@@ -14,13 +14,11 @@ export async function saveAdmin(data) {
     const existingUser = await new Admin().findByParams({name:name ,username:username,email:email});
 
     if (existingUser) {
-        console.log("user already exist")
         throw Boom.badRequest('User already exist');
     }
     const hashedPassword = hash(password);
 
     const insertedData = await new Admin().save({name:name ,username:username,email:email,password:hashedPassword});
-    console.log("enset",insertedData)
 
     return {
         data: insertedData,
@@ -81,7 +79,6 @@ export async function deleteAdminById(id) {
  */
 export async function login(params) {
     const { username, password } = params;
-   console.log("uu",username,password,params)
 
      if (!username || !password) {
        return {
@@ -91,13 +88,11 @@ export async function login(params) {
 
 
     const existingUser = await new Admin().findByParams({username:params.username});
-    console.log("exist",existingUser);
     if (!existingUser) {
    
       throw new Boom.badRequest('Invalid credentials');
     }
     const doesPasswordMatch = compare(password, existingUser.password);
-    console.log("ehat",doesPasswordMatch);
   
     if (!doesPasswordMatch) {
       logger.error('Invalid credentials: Password does not match');
@@ -112,11 +107,8 @@ export async function login(params) {
       email: existingUser.email,
       currentUser: 'admin'
     };
-    console.log("this is user",user)
   
     const token = createToken(user);
-
-    console.log("token",token)
   
     return {
       data: { token, user },

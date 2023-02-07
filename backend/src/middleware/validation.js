@@ -14,7 +14,6 @@ export function validateBody(schema) {
 
       next();
     } catch (err) {
-      console.log("errror",err);
       next(err);
     }
   };

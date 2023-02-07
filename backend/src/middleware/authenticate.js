@@ -5,7 +5,3 @@ export default expressjwt({
   secret: process.env.TOKEN_SECRET,
   algorithms: ['HS256']
 });
-console.log("k",expressjwt({
-  secret: process.env.TOKEN_SECRET,
-  algorithms: ['HS256']
-}))

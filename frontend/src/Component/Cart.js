@@ -47,9 +47,10 @@ let shippingTotal = 0;
 let total = 0;
 
 const Cart = () => {
-  const products = useSelector((state) => {
-    return state.cart.products;
-  });
+  // const products = useSelector((state) => {
+  //   return state.cart.products;
+  // });
+  const products = JSON.parse(localStorage.getItem("cart"))
 
   console.log("cart items,",products)
 
@@ -143,7 +144,7 @@ const Cart = () => {
           products.slice(0, 10).map((item) => {
             return (
               <>
-                <Link to={`products/${item._id}`}>
+                <Link to={`../products/${item._id}`}>
                   <div
                     key={item.id}
                     className="card h-[373] w-[234px] inline-block text-center shadow-xl m-[20px] hover:mt-[-0.5px]"

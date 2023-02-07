@@ -4,11 +4,7 @@ import Product from "../models/product.js";
 
 //Create Product-- only for Admin
 export async function createProduct(data) {
-  const product = data;
-  console.log("data product service",data)
   const insertedData = await new Product().save(data);
-  console.log("enset", insertedData);
-  console.log(insertedData);
 
   return {
     data: insertedData,
@@ -33,9 +29,7 @@ export async function createProduct(data) {
 //******************** Get all products ********************//
 export async function getAllProducts(pageNumber = 1, itemsPerPage = 12) {
 const data = await new Product().getAll(pageNumber, itemsPerPage);
-console.log("data ayauiuaia", data)
 if (!data) {
-console.log("Product not Found");
 throw Boom.badRequest("Product not Found");
 }
 return {
@@ -47,10 +41,7 @@ message: "Find all Products sucessfully",
 //get product details
 export async function getProductDetails(id) {
   const insertedData = await new Product().getById(id);
-  console.log("enset", insertedData);
-  console.log(insertedData);
   if (!insertedData) {
-    console.log("Book not Found");
     throw Boom.badRequest("Book not Found");
   }
   return {
@@ -73,7 +64,6 @@ export async function updateProduct(id, data) {
 
   const insertedData = await new Product().updateById(id, updatedData);
   if (!insertedData) {
-    console.log("Book/product not Found");
     throw Boom.badRequest("Book/product not Found");
   }
   return {

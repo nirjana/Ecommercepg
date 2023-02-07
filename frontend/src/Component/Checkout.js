@@ -6,7 +6,6 @@ import authHeader from "../authentication/authHeader.js";
 
 const CheckoutForm = () => {
   const [fullname, setFullname] = useState("");
-  // const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");

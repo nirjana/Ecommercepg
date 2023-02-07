@@ -2,10 +2,12 @@ import {Navbar} from "./Navbar"
 import {Footer} from "./Footer"
 import Products from "./Products"
 import Hero from "./Hero"
+import HeroPage from "./HeroPage"
 
 export const Home = () => {
     return <>
         <div>
+        <HeroPage/>
         <Hero/>
         <Products/>
         </div>

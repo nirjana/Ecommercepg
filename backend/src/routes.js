@@ -20,12 +20,9 @@ const router = Router();
 
 router.get('/',adminController.getAllAdmins)
 
-// router.post('/',authenticate,validateBody(addAdminSchema),adminController.addAdmin)
 router.post('/login',adminController.login)
 
-router.post('/register',
-validateBody(addAdminSchema),
-adminController.registerAdmin)
+router.post('/register',validateBody(addAdminSchema),adminController.registerAdmin)
 
 router.put('/:adminIdentifier',validateBody(editAdminSchema),adminController.updateAdmin)
 

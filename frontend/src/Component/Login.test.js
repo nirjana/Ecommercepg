@@ -44,7 +44,7 @@ test("testing", () => {
     </Provider>
   );
 
-
+console.log("env",process.env.REACT_APP_API_URL)
   fireEvent.click(screen.getByText("LOGIN"));
   expect(screen.getByText("LOGIN")).toBeInTheDocument();
 });

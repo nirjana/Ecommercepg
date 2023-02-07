@@ -18,7 +18,6 @@ export default function (err, req, res, next) {
 
       // Check if the error is Joi and handle accordingly
   if (Joi.isError(err)) {
-    console.log("error kun ho");
     return {
       code: HttpStatusCodes.BAD_REQUEST,
       message: 'Validation Error',
@@ -27,7 +26,6 @@ export default function (err, req, res, next) {
   }
 
     if (err.isBoom) {
-      console.log("boom")
         return {
           code: err.output.statusCode,
           message:err.output.payload.error,
@@ -39,7 +37,7 @@ export default function (err, req, res, next) {
         return {
           code: HttpStatusCodes.UNAUTHORIZED,
           message: HttpStatusCodes.getStatusText(HttpStatusCodes.UNAUTHORIZED),
-          details:"hi"+ err.message,
+          details:err.message,
         };
       }
     
@@ -47,6 +45,6 @@ export default function (err, req, res, next) {
       return {
         code: HttpStatusCodes.INTERNAL_SERVER_ERROR,
         message: HttpStatusCodes.getStatusText(HttpStatusCodes.INTERNAL_SERVER_ERROR),
-        details: err.message + "norm" || '',
+        details: err.message || '',
       };
   }

@@ -1,7 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-// import { Carousel } from 'react-responsive-carousel';
-// import Slider from "react-slick";
-// Data
+
 import data from "./data.json";
 
 const Carousel = () => {
