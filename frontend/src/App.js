@@ -25,7 +25,6 @@ import * as Sentry from "@sentry/react";
 function App() {
   return (
     <div className="container max-w-[1400px] mx-auto">
-      {console.log("process", process.env.REACT_APP_API_URL)}
       <Navbar />
       <Routes>
         <Route exact path="/" element={<Home />} />

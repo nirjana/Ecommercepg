@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js";
 import { useNavigate } from 'react-router-dom';
 
-
+//Register admin and save the details of admin in the backend
 const Register = () => {
   const [fullname,setFullname] = useState("");
   const [username,setUsername] = useState("");

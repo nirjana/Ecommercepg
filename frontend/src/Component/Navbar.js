@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link,useNavigate } from 'react-router-dom';
 import {useSelector} from "react-redux";
 import { useState, useEffect } from "react";
 import { authService } from "../authentication/authentication";
@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 export const Navbar = () => {
    const { id } = useParams();
    const [cartLength,setCartLength] = useState(0);
+   const navigate = useNavigate();
     const cartCount =useSelector(state => {
       console.log("this is nav state",state.cart.count) 
       return state.cart.count})
@@ -34,8 +35,8 @@ export const Navbar = () => {
 
   const logOut = () => {
     authService.logout();
+    navigate("/")
     window.location.reload();
-    window.location.href("/");
   };  
 
 const [users, setUsers] = useState();
@@ -64,7 +65,6 @@ const [showDropdown2, setShowDropdown2] = useState(false);
               />
             </Link>
           </div>
-
           <ul className="inline-block flex text-grey justify-end py-[20px] items-center">
             <li className="p-[10px] hover:bg-[orange] ">
               {" "}
@@ -78,6 +78,7 @@ const [showDropdown2, setShowDropdown2] = useState(false);
               {" "}
               <Link to="/products"> Our Products </Link>
             </li>
+            {/* if customer is logged in then cart is shown, if admin is logged in dashboard is shown */}
             {currentUser ? (
               currentUser === "user" ? (
                 <>

@@ -5,6 +5,7 @@ import * as notify from "../utils/notify.js"
 import * as Sentry from "@sentry/react";
 const user = JSON.parse(localStorage.getItem("token"));
 
+// This component is login for admin
 const Login = () => {
   const [username,setUsername] =useState("");
   const [password,setPassword] =useState("");
@@ -20,6 +21,7 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+// if token is received then the login is successful otherwise error is thrown
         if (data.data.token) {
           localStorage.setItem("user", JSON.stringify(data.data.user));
           localStorage.setItem("token", JSON.stringify(data.data.token));

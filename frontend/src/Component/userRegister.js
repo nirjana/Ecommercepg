@@ -4,6 +4,7 @@ import { useState} from 'react';
 import { ToastContainer } from 'react-toastify';
 import * as notify from "../utils/notify.js"
 import authHeader from '../authentication/authHeader.js';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [fullname,setFullname] = useState("");
@@ -11,6 +12,7 @@ const Register = () => {
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
   const [repassword,setRepassword] = useState("");
+  const navigate = useNavigate();
 
     const handleSubmit = (event) => {
       event.preventDefault();
@@ -23,8 +25,14 @@ const Register = () => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log('Success:', data);
-          notify.success("registered user")
+          if(!data.details){
+            console.log("Success:", data);
+            notify.success("registered");
+            navigate("/");
+          }
+          else{
+            notify.error(data.details)
+          }
         })
         .catch((error) => {
           notify.error(error)
