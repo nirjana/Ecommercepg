@@ -7,6 +7,7 @@ import {useSelector,useDispatch} from "react-redux"
 import {addToCart} from "../redux/cartSlice.js"
 import * as productServices from "../services/index.js"
 
+//Detail of product is displayed with the help of id from the useParams hook
 const DetailProduct = () => {
     const {id} = useParams();
     console.log("this is iddetail product",id)

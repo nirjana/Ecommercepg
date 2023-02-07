@@ -71,7 +71,7 @@ const Cart = () => {
   }, []);
 
   return (
-    <>
+    <>{products ? <div>
       <p className="text-[40px]">Cart Items({cartCount})</p>
       <div class="flex flex-col">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -144,7 +144,7 @@ const Cart = () => {
           products.slice(0, 10).map((item) => {
             return (
               <>
-                <Link to={`../products/${item._id}`}>
+                <Link to={`../products/${item.id}`}>
                   <div
                     key={item.id}
                     className="card h-[373] w-[234px] inline-block text-center shadow-xl m-[20px] hover:mt-[-0.5px]"
@@ -167,6 +167,10 @@ const Cart = () => {
             );
           })}
       </div>
+      </div>: 
+      <div>
+        <p>No products on cart</p>
+      </div>}
     </>
   );
 };

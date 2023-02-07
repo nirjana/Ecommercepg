@@ -16,7 +16,6 @@
 //     stub: './stub/seed.stub'
 //   }
 // };
-// export default configuration;
 
 // ELEPHANT SUJATA 
 // ELEPHANT
