@@ -7,21 +7,25 @@ import {useSelector,useDispatch} from "react-redux"
 import {addToCart} from "../redux/cartSlice.js"
 import * as productServices from "../services/index.js"
 
-//Detail of product is displayed with the help of id from the useParams hook
-const DetailProduct = () => {
-    const {id} = useParams();
-    console.log("this is iddetail product",id)
-    const [product,setProduct] =useState("");
-    const dispatch = useDispatch();
 
-    useEffect(()=>{
-        fetch(`${process.env.REACT_APP_API_URL}/products/${id}`)
-        .then(res => res.json())
-        .then(res => {
-          console.log("this",res)
-          setProduct(res.data)})
-        .catch(err => console.error(err))
-    },[])
+//Detail of product is displayed with the help of id from the useParams hook
+
+const DetailProduct = () => {
+  const { id } = useParams(); // get the id of the selected product from the URL
+  console.log("this is iddetail product", id);
+  const [product, setProduct] = useState(""); // state to store the details of the product
+  const dispatch = useDispatch(); // hook for dispatching actions to the store
+
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/products/${id}`) //
+      // Using useEffect hook to fetch data of the Product with the given id
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("this", res);
+        setProduct(res.data);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <>
