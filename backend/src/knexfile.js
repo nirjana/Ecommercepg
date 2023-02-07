@@ -16,11 +16,6 @@
 //     stub: './stub/seed.stub'
 //   }
 // };
-// export const connection = Knex(configuration);
-// export default configuration;
-
-
-// export default configuration;
 
 // ELEPHANT SUJATA 
 // ELEPHANT
