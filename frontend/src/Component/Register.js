@@ -45,24 +45,91 @@ const Register = () => {
     }
 
     return (
-        <>
-          <form onSubmit={handleSubmit} className="login shadow-xl mx-auto w-[300px]  p-[30px] mt-[40px] rounded-md">
-            <h1 className="text-[30px] text-center mb-[20px]">Register</h1>
-            <label for ="fullname" className='text-gray-600'> Full Name</label>
-            <input  type="text" id="fullname" value={fullname} placeholder="Enter fullname" onChange={(e)=>{setFullname(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"/>
-            <label for ="username" className='text-gray-600'> Email</label>
-            <input  type="email" id="email" value={email} placeholder="Enter Email" onChange={(e)=>{setEmail(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"/>
-            <label for ="email" className='text-gray-600'> Username</label>
-            <input  type="text" id="username" value={username} placeholder="Enter Username" onChange={(e)=>{setUsername(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"/>
-            <label for ="password" className='text-gray-600'>Password</label>
-            <input type="password" id="password" value={password} placeholder="Enter Password" onChange={(e)=>{setPassword(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md" />
-            <label for ="repassword" className='text-gray-600'>Repeat Password</label>
-            <input type="password" id="repassword" value={repassword} placeholder="Enter Password Again" onChange={(e)=>{setRepassword(e.target.value)}} className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md" />
-            <button type="submit" className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] text-white rounded-md bg-green-600">REGISTER</button>
-          </form>
-          <ToastContainer autoClose={4000}/>
-          </>
-    )
+      <>
+        <form
+          onSubmit={handleSubmit}
+          className="login shadow-xl mx-auto w-[300px]  p-[30px] mt-[40px] rounded-md"
+        >
+          <h1 className="text-[30px] text-center mb-[20px]">Register</h1>
+          <label for="fullname" className="text-gray-600">
+            {" "}
+            Full Name
+          </label>
+          <input
+            type="text"
+            data-testid="fullname"
+            value={fullname}
+            placeholder="Enter fullname"
+            onChange={(e) => {
+              setFullname(e.target.value);
+            }}
+            className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"
+          />
+          <label for="username" className="text-gray-600">
+            {" "}
+            Email
+          </label>
+          <input
+            type="email"
+            data-testid="email"
+            value={email}
+            placeholder="Enter Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"
+          />
+          <label for="email" className="text-gray-600">
+            {" "}
+            Username
+          </label>
+          <input
+            type="text"
+            data-testid="username"
+            value={username}
+            placeholder="Enter Username"
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
+            className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"
+          />
+          <label for="password" className="text-gray-600">
+            Password
+          </label>
+          <input
+            type="password"
+            data-testid="password"
+            value={password}
+            placeholder="Enter Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"
+          />
+          <label for="repassword" className="text-gray-600">
+            Repeat Password
+          </label>
+          <input
+            type="password"
+            data-testid="repassword"
+            value={repassword}
+            placeholder="Enter Password Again"
+            onChange={(e) => {
+              setRepassword(e.target.value);
+            }}
+            className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] rounded-md"
+          />
+          <button
+            data-testid="submit"
+            type="submit"
+            className="shadow-md p-[5px] w-full mb-[20px] mt-[10px] text-white rounded-md bg-green-600"
+          >
+            REGISTER
+          </button>
+        </form>
+        <ToastContainer autoClose={4000} />
+      </>
+    );
 }
 
 export default Register

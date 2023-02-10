@@ -1,0 +1,54 @@
+import { render, fireEvent, waitFor } from "@testing-library/react";
+import { Link, useNavigate } from "react-router-dom";
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
+import { rootReducer } from "./reducers";
+import { Navbar } from "./Navbar";
+
+import "@testing-library/jest-dom";
+import {  screen } from "@testing-library/react";
+
+import { store } from "../redux/store";
+
+
+
+const navigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: jest.fn(() => navigate),
+}));
+
+test("Navbar component should display correct navigation links", async () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
+    </Provider>
+  );
+
+  const homeLink = screen.getByText("Home");
+  const contactLink = screen.getByText("Contact");
+  const productsLink = screen.getByText("Our Products");
+
+  expect(homeLink).toBeInTheDocument();
+  expect(contactLink).toBeInTheDocument();
+  expect(productsLink).toBeInTheDocument();
+});
+
+test("Navbar component should log out user and redirect to home page", async () => {
+  render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Navbar />
+      </BrowserRouter>
+    </Provider>
+  );
+
+  const logoutLink = screen.getByText("Logout");
+  fireEvent.click(logoutLink);
+
+  await waitFor(() => {
+    expect(navigate).toHaveBeenCalledWith("/");
+  });
+});

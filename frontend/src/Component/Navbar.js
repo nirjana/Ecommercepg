@@ -118,7 +118,7 @@ const [showDropdown2, setShowDropdown2] = useState(false);
               <>
                 <div
                   className="relative"
-                  onMouseEnter={() => setShowDropdown(true)}
+                  // onMouseEnter={() => setShowDropdown(true)}
                 >
                   <button
                     className="p-[10px] hover:bg-[orange] "
@@ -154,7 +154,7 @@ const [showDropdown2, setShowDropdown2] = useState(false);
                 </div>
                 <div
                   className="relative"
-                  onMouseEnter={() => setShowDropdown2(true)}
+                  // onMouseEnter={() => setShowDropdown2(true)}
                 >
                   <button
                     className="p-[10px] hover:bg-[orange] "
